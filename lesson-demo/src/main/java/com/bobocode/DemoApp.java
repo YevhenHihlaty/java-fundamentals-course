@@ -1,12 +1,25 @@
 package com.bobocode;
 
+import com.bobocode.data.Accounts;
+import com.bobocode.model.Account;
+
+import java.util.Comparator;
 import java.util.Stack;
 
 public class DemoApp {
-    public static void main(String[] args) {
+    public static void main2(String[] args) {
         var head = createLinkedList(4, 3, 9, 1);
         printReversedRecursively(head);
         printReversedUsingStack(head);
+    }
+
+    public static void main(String[] args) {
+        Comparator<Account> accountComparator = new RandomFieldComparator<>(Account.class);
+        System.out.println(accountComparator);
+        Accounts.generateAccountList(10)
+                .stream()
+                .sorted(accountComparator)
+                .forEach(System.out::println);
     }
 
     /**
